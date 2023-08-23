@@ -1,0 +1,9 @@
+@font-face {
+  font-family: 'Monument Extended';
+  src: url('~/assets/MonumentExtended-Regular.otf') format('opentype');
+}
+
+@font-face {
+  font-family: 'Plain';
+  src: url('~/assets/Plain-Thin.otf') format('opentype');
+}
