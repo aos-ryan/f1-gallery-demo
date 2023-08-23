@@ -10,7 +10,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'AOS - AR Gallery Demo',
+    title: 'AOS - F1 Gallery Demo',
     htmlAttrs: {
       lang: 'en',
     },

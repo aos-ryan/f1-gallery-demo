@@ -1,4 +1,4 @@
-# aos-mockject
+# f1-gallery-demo
 
 ## Build Setup
 
