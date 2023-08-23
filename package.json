@@ -17,6 +17,7 @@
     "nuxt": "^2.15.8",
     "oimo": "^1.0.9",
     "raw-loader": "^4.0.2",
+    "three": "^0.155.0",
     "vue": "^2.7.10",
     "vue-server-renderer": "^2.7.10",
     "vue-template-compiler": "^2.7.10"

@@ -1,6 +1,11 @@
 <template>
   <main>
-    <NuxtLink class="button" to="/world-portal">Begin</NuxtLink>
+    <NuxtLink class="button" to="/world-portal"
+      >F1 Gallery - AR Portal Version</NuxtLink
+    >
+    <NuxtLink class="button" to="/desktop-model"
+      >F1 Gallery - Static Viewer Version</NuxtLink
+    >
   </main>
 </template>
 

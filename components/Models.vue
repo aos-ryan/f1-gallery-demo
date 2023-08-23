@@ -1,10 +1,7 @@
 <template>
-  <a-entity
-    :id="`pedestal-${this.id}`"
-    geometry="primitive: box; width: 3; height: 8; depth: 3"
-    :position="`${this.position}`"
-  >
-    <a-entity
+  <a-entity :id="`pedestal-${this.id}`" :position="`${this.position}`">
+    <!-- geometry="primitive: box; width: 3; height: 8; depth: 3" -->
+    <!-- <a-entity
       class="bustMarker"
       position="0 4 0"
       rotation="0 90 0"
@@ -12,18 +9,19 @@
       geometry="primitive: plane"
       material="transparent: true; opacity: 0"
     >
-    </a-entity>
+    </a-entity> -->
     <a-entity
       :id="`${this.id}`"
-      class="cantap"
+      class="bustMarker"
       :gltf-model="`${this.src}`"
       :rotation="`${this.rotation}`"
       :scale="`${this.scale}`"
       position="0 4 0"
-      :move-to-marker="`defaultRotation: ${this.rotation}`"
       spotlight
+      spin="speed: 5000"
+      shadow="receive: false"
     >
-      <a-entity id="poiGroup" points>
+      <a-entity id="poiGroup">
         <a-entity
           v-for="(point, index) in this.pointsOfInterest"
           :position="`${point.position}`"
@@ -36,12 +34,6 @@
           </div>
         </a-entity>
       </a-entity>
-      <!-- <a-entity id="poi-group">
-        <div v-for="point in this.pointsOfInterest" class="point">
-          <div class="label">#</div>
-          <div class="text">Test text</div>
-        </div>
-      </a-entity> -->
     </a-entity>
   </a-entity>
 </template>

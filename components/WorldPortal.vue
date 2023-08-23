@@ -21,13 +21,10 @@
       renderer="colorManagement: true;"
       tap-to-place-portal
       prompt-flow
-      stats
     >
       <!-- stats -->
       <!-- Assets -->
-      <a-assets>
-        <img id="brick" src="/textures/brickwall.jpg" />
-      </a-assets>
+      <a-assets> </a-assets>
 
       <!-- Camera -->
       <a-camera id="camera" position="0 9 9" portal-camera>
@@ -60,11 +57,20 @@
         <a-entity
           id="room"
           geometry="primitive: box"
-          material="src: #brick; side: back"
+          material="color: #222426; side: back"
           scale="50 50 50"
-          position="-0.177 25.25 -25.22"
+          position="-0.177 25 -25.22"
         >
         </a-entity>
+        <a-plane
+          id="floor"
+          material="color: #4C4C4C; roughness: 0.5; metalness: 0.5 "
+          scale="100 100 100"
+          position="0 0.25 -50.25"
+          rotation="-90 0 0"
+          shadow="receive: true"
+        >
+        </a-plane>
         <!-- Busts / Models in scene -->
         <Models
           v-for="model in modelData"
@@ -110,23 +116,14 @@ export default {
       bgFade: false,
       currentModelId: '',
       modelData: [
-        // {
-        //   id: 'zeus',
-        //   src: '/models/zeus_bust.glb',
-        //   info: 'Zeus is the sky and thunder god in ancient Greek religion, who rules asking of the gods on Mount Olympus.',
-        //   rotation: '0 -180 0',
-        //   scale: '1 1 1',
-        //   zoomScale: '0.5 0.5 0.5',
-        //   position: '-22 1 -10',
-        // },
         {
-          id: 'lady',
-          src: '/models/lady_bust.glb',
-          info: 'The bust portrays a lady of the Spanish high society of 1909.',
+          id: 'tyre',
+          src: '/models/single_tyre_fixed.glb',
+          info: 'A F1 car tyre.',
           rotation: '0 90 0',
-          scale: '5 5 5',
+          scale: '8 8 8',
           zoomScale: '0.5 0.5 0.5',
-          position: '-22 1 -10',
+          position: '0 1 -20',
           markers: [
             {
               position: '0.1 0.1 0.2',
@@ -136,25 +133,6 @@ export default {
               position: '0.1 0.2 0.2',
               text: 'This is a second text marker',
             },
-          ],
-        },
-        {
-          id: 'lady2',
-          src: '/models/lady_bust.glb',
-          info: 'This is a duplicate of the bust portraying a lady of the Spanish high society of 1909.',
-          rotation: '0 90 0',
-          scale: '5 5 5',
-          zoomScale: '0.5 0.5 0.5',
-          position: '-22 1 -20',
-          markers: [
-            // {
-            //   position: '0.1 0.1 0.2',
-            //   text: 'This is a text marker',
-            // },
-            // {
-            //   position: '0.1 0.2 0.2',
-            //   text: 'This is a second text marker',
-            // },
           ],
         },
       ],
