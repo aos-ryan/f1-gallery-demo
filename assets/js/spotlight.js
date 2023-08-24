@@ -16,7 +16,7 @@ const spotlight = {
     spotlight.setAttribute('light', 'castShadow: true')
     spotlight.setAttribute('angle', '30')
     spotlight.setAttribute('intensity', '0')
-    spotlight.setAttribute('position', '0 15 0')
+    spotlight.setAttribute('position', '0 18 0')
     spotlight.setAttribute(`animation__${this.model.id}lightup`, {
       property: 'intensity',
       to: '1',

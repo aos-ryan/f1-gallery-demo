@@ -1,10 +1,8 @@
 <template>
   <main>
-    <NuxtLink class="button" to="/world-portal"
-      >F1 Gallery - AR Portal Version</NuxtLink
-    >
-    <NuxtLink class="button" to="/desktop-model"
-      >F1 Gallery - Static Viewer Version</NuxtLink
+    <a class="button" href="/world-portal">F1 Gallery - AR Portal Version</a>
+    <a class="button" href="/desktop-model"
+      >F1 Gallery - Static Viewer Version</a
     >
   </main>
 </template>

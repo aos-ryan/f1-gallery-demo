@@ -3,20 +3,19 @@
     <canvas class="webgl"></canvas>
     <div class="point point-0">
       <div class="label">1</div>
-      <div class="text">18-inch low-profile wheels.</div>
-    </div>
-    <div class="point point-1">
-      <div class="label">2</div>
       <div class="text">
         Hard tyres provide the least grip, but are supposed to remain in working
         order the longest.
       </div>
     </div>
+    <div class="point point-1">
+      <div class="label">2</div>
+      <div class="text">18-inch low-profile wheels.</div>
+    </div>
   </body>
 </template>
 
 <script>
-import * as Three from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
@@ -32,11 +31,11 @@ export default {
   methods: {
     init() {
       const canvas = document.querySelector('canvas.webgl')
-      const scene = new Three.Scene()
+      const scene = new THREE.Scene()
       // floor
-      const floor = new Three.Mesh(
-        new Three.PlaneGeometry(10, 10),
-        new Three.MeshStandardMaterial({
+      const floor = new THREE.Mesh(
+        new THREE.PlaneGeometry(10, 10),
+        new THREE.MeshStandardMaterial({
           color: '#444444',
           metalness: 0,
           roughness: 0.5,
@@ -50,20 +49,20 @@ export default {
       // points
       const points = [
         {
-          position: new Three.Vector3(0.9, 0.8, -0.5),
+          position: new THREE.Vector3(1.5, 1, 0),
           element: document.querySelector('.point-0'),
         },
         {
-          position: new Three.Vector3(0, 1, 1.7),
+          position: new THREE.Vector3(0, 1, 0.8),
           element: document.querySelector('.point-1'),
         },
       ]
 
       // lights
-      const ambientLight = new Three.AmbientLight(0xffffff, 0.8)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
       scene.add(ambientLight)
 
-      const directionalLight = new Three.DirectionalLight(0xffffff, 0.6)
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
       directionalLight.castShadow = true
       directionalLight.shadow.mapSize.set(1024, 1024)
       directionalLight.shadow.camera.far = 15
@@ -81,7 +80,7 @@ export default {
         (glb) => {
           const f1Scene = glb.scene
           f1Scene.scale.set(4, 4, 4)
-          f1Scene.position.y = 0
+          f1Scene.position.y = 1
           scene.add(f1Scene)
         }
         //   (progress) => {
@@ -101,7 +100,7 @@ export default {
       }
 
       // camera
-      const camera = new Three.PerspectiveCamera(
+      const camera = new THREE.PerspectiveCamera(
         75,
         sizes.width / sizes.height,
         0.1,
@@ -116,13 +115,14 @@ export default {
       controls.enableDamping = true
 
       // Renderer
-      const renderer = new Three.WebGLRenderer({
+      const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
       })
       renderer.shadowMap.enabled = true
-      renderer.shadowMap.type = Three.PCFSoftShadowMap
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap
       renderer.setSize(sizes.width, sizes.height)
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
       // Animate
       const clock = new THREE.Clock()
       let previousTime = 0

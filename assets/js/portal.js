@@ -56,6 +56,7 @@ const portalCameraComponent = {
     if (!isOutside) {
       this.toggleLights = true
       if (this.toggleLights && !this.lightsOn) {
+        this.el.sceneEl.emit('toggleInPortal', true)
         console.log('turn on lights')
         this.ambientLight.emit('turnOnAmbientLight')
         this.toggleLights = false
@@ -64,6 +65,7 @@ const portalCameraComponent = {
     }
     if (isOutside && this.lightsOn) {
       this.ambientLight.emit('turnOffAmbientLight')
+      this.el.sceneEl.emit('toggleInPortal', true)
       console.log('turn off lights')
       this.lightsOn = false
     }

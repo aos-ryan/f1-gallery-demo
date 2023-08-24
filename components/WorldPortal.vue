@@ -1,8 +1,22 @@
 <template>
-  <div id="ar-div" class="cantap">
+  <div id="ar-div">
     <!-- UI -->
     <div id="overlay" class="absolute-fill">
       <span id="promptText"></span>
+    </div>
+    <!-- Points -->
+    <div class="points-container" v-show="inPortal">
+      <div class="point point-0">
+        <div class="label">1</div>
+        <div class="text">
+          Hard tyres provide the least grip, but are supposed to remain in
+          working order the longest.
+        </div>
+      </div>
+      <div class="point point-1">
+        <div class="label">2</div>
+        <div class="text">18-inch low-profile wheels.</div>
+      </div>
     </div>
     <!-- Info Modal -->
     <InfoModal
@@ -21,6 +35,8 @@
       renderer="colorManagement: true;"
       tap-to-place-portal
       prompt-flow
+      points
+      stats
     >
       <!-- stats -->
       <!-- Assets -->
@@ -33,11 +49,11 @@
           raycaster="objects: .bustMarker; far: 25"
         >
         </a-entity>
-        <a-entity
+        <!-- <a-entity
           id="objects-raycaster"
           cursor="fuse: false; rayOrigin: mouse;"
           raycaster="objects: .cantap"
-        ></a-entity>
+        ></a-entity> -->
 
         <!-- Plane that blocks the scene -->
         <!-- <a-plane
@@ -114,26 +130,17 @@ export default {
   data() {
     return {
       bgFade: false,
+      inPortal: false,
       currentModelId: '',
       modelData: [
         {
           id: 'tyre',
           src: '/models/single_tyre_fixed.glb',
-          info: 'A F1 car tyre.',
-          rotation: '0 90 0',
+          info: 'A formula one car tyre.',
+          rotation: '0 0 0',
           scale: '8 8 8',
           zoomScale: '0.5 0.5 0.5',
           position: '0 1 -20',
-          markers: [
-            {
-              position: '0.1 0.1 0.2',
-              text: 'This is a text marker',
-            },
-            {
-              position: '0.1 0.2 0.2',
-              text: 'This is a second text marker',
-            },
-          ],
         },
       ],
     }
@@ -142,6 +149,9 @@ export default {
     doBgFade() {
       this.bgFade = !this.bgFade
     },
+    toggleInPortal() {
+      this.inPortal = !this.inPortal
+    },
     handleModelChange(event) {
       // update the current model id
       this.currentModelId = event.target.getAttribute('id')
@@ -149,6 +159,7 @@ export default {
   },
   created() {
     document.addEventListener('bg-fade', this.doBgFade)
+    document.addEventListener('toggleInPortal', this.toggleInPortal)
     document.addEventListener('currentModelChanged', this.handleModelChange)
   },
 }
@@ -194,6 +205,56 @@ export default {
   bottom: 12vh;
   left: 50%;
   transform: translate(-50%, 0);
+}
+/* Styles for points of interest */
+.point {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 999;
+}
+.point .label {
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #00000077;
+  border: 1px solid #ffffff77;
+  color: #ffffff;
+  font-family: Helvetica, Arial, sans-serif;
+  text-align: center;
+  line-height: 40px;
+  font-weight: 100;
+  font-size: 14px;
+  cursor: help;
+  transform: scale(0, 0);
+  transition: transform 0.3s;
+}
+.point.visible .label {
+  transform: scale(1, 1);
+}
+.point .text {
+  position: absolute;
+  top: 30px;
+  left: -120px;
+  width: 200px;
+  padding: 20px;
+  border-radius: 4px;
+  background: #00000077;
+  border: 1px solid #ffffff77;
+  color: #ffffff;
+  line-height: 1.3em;
+  font-family: Helvetica, Arial, sans-serif;
+  font-weight: 100;
+  font-size: 14px;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.point:hover .text {
+  opacity: 1;
 }
 
 /* Animations */
