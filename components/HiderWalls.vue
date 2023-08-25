@@ -3,17 +3,17 @@
     <a-entity id="hider-walls">
       <a-box
         scale="100 1 100"
-        position="0 -1 49"
+        position="0 1 49"
         xrextras-hider-material
       ></a-box>
       <a-box
         scale="100 100 1"
-        position="0 50 75"
+        position="0 50 31"
         xrextras-hider-material
       ></a-box>
       <a-box
         scale="100 1 100"
-        position="0 100 49"
+        position="0 23 49"
         xrextras-hider-material
       ></a-box>
       <a-box

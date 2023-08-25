@@ -76,7 +76,7 @@
         <a-entity
           id="room"
           gltf-model="/models/warehouse.glb"
-          position="0 0.15 -34.28"
+          position="0 0.15 -3"
           rotation="0 90 0"
           scale="5 5 5"
           shadow="cast: false"
@@ -152,7 +152,7 @@ export default {
           rotation: '0 0 0',
           scale: '8 8 8',
           zoomScale: '0.5 0.5 0.5',
-          position: '0 1 -20',
+          position: '0 1 -25',
         },
       ],
     }
