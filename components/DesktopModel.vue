@@ -59,7 +59,7 @@ export default {
       ]
 
       // lights
-      const ambientLight = new THREE.AmbientLight(0xffffff, 1)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.6)
       scene.add(ambientLight)
 
       // const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
@@ -85,7 +85,7 @@ export default {
       spotLight.shadow.camera.fov = 30
       scene.add(spotLight)
 
-      const light = new THREE.PointLight(0xffffff, 1, 30)
+      const light = new THREE.PointLight(0xffffff, 0.6, 30)
       light.position.set(0, 5, 0)
       scene.add(light)
 
@@ -151,9 +151,12 @@ export default {
       // Renderer
       const renderer = new THREE.WebGLRenderer({
         canvas: canvas,
+        alphas: true,
       })
+      renderer.outputEncoding = THREE.sRGBEncoding
       renderer.shadowMap.enabled = true
       renderer.shadowMap.type = THREE.PCFSoftShadowMap
+
       renderer.setSize(sizes.width, sizes.height)
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
