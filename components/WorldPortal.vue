@@ -40,13 +40,16 @@
     >
       <!-- stats -->
       <!-- Assets -->
-      <a-assets> </a-assets>
+      <a-assets>
+        <img id="concrete" src="/textures/concrete_normal.jpg" />
+        <img id="clay" src="/textures/clay_sphere_tex.png" />
+      </a-assets>
 
       <!-- Camera -->
       <a-camera id="camera" position="0 9 9" portal-camera>
         <a-entity
           id="light-raycaster"
-          raycaster="objects: .bustMarker; far: 25"
+          raycaster="objects: .bustMarker; far: 20"
         >
         </a-entity>
         <!-- <a-entity
@@ -72,13 +75,22 @@
       <a-entity id="portal-contents">
         <a-entity
           id="room"
+          gltf-model="/models/warehouse.glb"
+          position="0 0.15 -34.28"
+          rotation="0 90 0"
+          scale="5 5 5"
+          shadow="cast: false"
+        >
+        </a-entity>
+        <!-- <a-entity
+          id="room"
           geometry="primitive: box"
           material="color: #222426; side: back"
           scale="50 50 50"
           position="-0.177 25 -25.22"
         >
-        </a-entity>
-        <a-plane
+        </a-entity> -->
+        <!-- <a-plane
           id="floor"
           material="color: #4C4C4C; roughness: 0.5; metalness: 0.5 "
           scale="100 100 100"
@@ -86,7 +98,7 @@
           rotation="-90 0 0"
           shadow="receive: true"
         >
-        </a-plane>
+        </a-plane> -->
         <!-- Busts / Models in scene -->
         <Models
           v-for="model in modelData"

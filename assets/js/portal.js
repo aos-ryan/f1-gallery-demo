@@ -19,16 +19,16 @@ const portalCameraComponent = {
     this.ambientLight.setAttribute('id', 'ambient-scene-light')
     this.ambientLight.setAttribute('type', 'ambient')
     this.ambientLight.setAttribute('color', '#CCC')
-    this.ambientLight.setAttribute('intensity', '0.05')
+    this.ambientLight.setAttribute('intensity', '0.3')
     this.ambientLight.setAttribute('animation__ambientlightson', {
       property: 'intensity',
-      to: '0.2',
+      to: '0.8',
       dur: 500,
       startEvents: 'turnOnAmbientLight',
     })
     this.ambientLight.setAttribute('animation__ambientlightsoff', {
       property: 'intensity',
-      to: '0.05',
+      to: '0.3',
       dur: 500,
       startEvents: 'turnOffAmbientLight',
     })
