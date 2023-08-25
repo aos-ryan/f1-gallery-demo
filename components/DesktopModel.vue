@@ -44,7 +44,7 @@ export default {
       floor.receiveShadow = true
       floor.rotation.x = -Math.PI * 0.5
       floor.position.y = -1
-      scene.add(floor)
+      // scene.add(floor)
 
       // points
       const points = [
@@ -59,19 +59,34 @@ export default {
       ]
 
       // lights
-      const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
+      const ambientLight = new THREE.AmbientLight(0xffffff, 1)
       scene.add(ambientLight)
 
-      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.6)
-      directionalLight.castShadow = true
-      directionalLight.shadow.mapSize.set(1024, 1024)
-      directionalLight.shadow.camera.far = 15
-      directionalLight.shadow.camera.left = -7
-      directionalLight.shadow.camera.top = 7
-      directionalLight.shadow.camera.right = 7
-      directionalLight.shadow.camera.bottom = -7
-      directionalLight.position.set(5, 5, 5)
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 0.8)
+      // directionalLight.castShadow = true
+      // directionalLight.shadow.mapSize.set(1024, 1024)
+      // directionalLight.shadow.camera.far = 15
+      // directionalLight.shadow.camera.left = -7
+      // directionalLight.shadow.camera.top = 7
+      // directionalLight.shadow.camera.right = 7
+      // directionalLight.shadow.camera.bottom = -7
+      directionalLight.position.set(0, 5, 0)
       scene.add(directionalLight)
+
+      const spotLight = new THREE.SpotLight(0xffffff)
+      spotLight.position.set(0, 2, 1)
+      spotLight.penumbra = 0.5
+      spotLight.castShadow = true
+      spotLight.shadow.mapSize.width = 1024
+      spotLight.shadow.mapSize.height = 1024
+      spotLight.shadow.camera.near = 500
+      spotLight.shadow.camera.far = 4000
+      spotLight.shadow.camera.fov = 30
+      scene.add(spotLight)
+
+      const light = new THREE.PointLight(0xffffff, 1, 30)
+      light.position.set(0, 5, 0)
+      scene.add(light)
 
       // model
       const gltfLoader = new GLTFLoader()
@@ -82,6 +97,24 @@ export default {
           f1Scene.scale.set(4, 4, 4)
           f1Scene.position.y = 1
           scene.add(f1Scene)
+        }
+        //   (progress) => {
+        //     console.log("progress");
+        //     console.log(progress);
+        //   },
+        //   (error) => {
+        //     console.log("error");
+        //     console.log(error);
+        //   }
+      )
+      gltfLoader.load(
+        '/models/warehouse.glb',
+        (glb) => {
+          const warehouse = glb.scene
+          warehouse.scale.set(2, 2, 2)
+          warehouse.position.y = -2
+          warehouse.rotation.set(0, 30, 0)
+          scene.add(warehouse)
         }
         //   (progress) => {
         //     console.log("progress");
