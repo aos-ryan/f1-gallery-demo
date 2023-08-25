@@ -2,6 +2,11 @@
   <div id="ar-div">
     <!-- UI -->
     <div id="overlay" class="absolute-fill">
+      <div id="ui">
+        <div id="recenter-btn" class="bdr-ripple">
+          <img class="ui-img" src="/textures/recenter.png" />
+        </div>
+      </div>
       <span id="promptText"></span>
     </div>
     <!-- Points -->
@@ -36,6 +41,7 @@
       tap-to-place-portal
       prompt-flow
       points
+      ui-controls
       stats
     >
       <!-- stats -->
@@ -204,6 +210,21 @@ export default {
   bottom: 0;
   right: 0;
   pointer-events: none;
+}
+#ui {
+  display: none;
+  position: absolute;
+  z-index: 5;
+  left: 7vh;
+  bottom: 5vh;
+  width: 70%;
+  flex-direction: row;
+  justify-content: space-between;
+  pointer-events: auto;
+}
+.ui-img {
+  width: 30px;
+  height: 30px;
 }
 
 #promptText {
