@@ -51,7 +51,7 @@ const points = {
         // intersection could be behind the point, calculate the distance to the point, then calculate the intersections distance and compare
         const intersectionDistance = intersects[0].distance
         const pointDistance = point.position.distanceTo(this.cameraRig.position)
-        console.log(pointDistance)
+        // console.log(pointDistance)
         // if the intersectionDistance is less than the point distance i.e. the point is further away from the camera, it should not be visible
         if (intersectionDistance < pointDistance) {
           point.element.classList.remove('visible')
