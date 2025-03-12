@@ -10,11 +10,11 @@ const points = {
     this.raycaster = new THREE.Raycaster()
     this.points = [
       {
-        position: new THREE.Vector3(4, 8, -25),
+        position: new THREE.Vector3(6, 3, -21),
         element: document.querySelector('.point-0'),
       },
       {
-        position: new THREE.Vector3(0, 8, -23),
+        position: new THREE.Vector3(-4, 1, -21),
         element: document.querySelector('.point-1'),
       },
     ]
