@@ -122,10 +122,11 @@
 
         <a-entity
           id="tyre"
+          class="bustMarker"
           gltf-model="/models/rc-13.glb"
           rotation="0 -90 0"
           scale="2 2 2"
-          position="0 0.2 -25"
+          position="0 0.2 -20"
           spotlight
           shadow="receive: false"
         >
