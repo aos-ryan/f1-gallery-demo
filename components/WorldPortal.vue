@@ -153,10 +153,10 @@ export default {
       modelData: [
         {
           id: 'tyre',
-          src: '/models/single_tyre_fixed.glb',
-          info: 'A formula one car tyre.',
-          rotation: '0 0 0',
-          scale: '8 8 8',
+          src: '/models/rc-13.glb',
+          info: 'A formula one car.',
+          rotation: '0 -90 0',
+          scale: '2 2 2',
           zoomScale: '0.5 0.5 0.5',
           position: '0 1 -25',
         },
