@@ -15,9 +15,9 @@ const spotlight = {
     spotlight.setAttribute('target', `#${this.model.id}`)
     spotlight.setAttribute('light', 'castShadow: true')
     spotlight.setAttribute('angle', '30')
-    spotlight.setAttribute('intensity', '0.5')
+    spotlight.setAttribute('intensity', '1.0')
     spotlight.setAttribute('penumbra', '0.9')
-    spotlight.setAttribute('position', '0 16.3 10.5')
+    spotlight.setAttribute('position', '7.6 18.8 -77.6')
     // spotlight.setAttribute(`animation__${this.model.id}lightup`, {
     //   property: 'intensity',
     //   to: '1',
@@ -37,9 +37,11 @@ const spotlight = {
     // test against the "marker" and not the mesh itself to help with performance
     // this.parent.addEventListener('raycaster-intersected', () => {
     //   spotlight.emit('raycasterIntersectingTarget', null, false)
+    //   console.log('intersected')
     // })
     // this.parent.addEventListener('raycaster-intersected-cleared', () => {
     //   spotlight.emit('raycasterLeftIntersectingTarget', null, false)
+    //   console.log('intersection left')
     // })
   },
   remove: function () {

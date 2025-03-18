@@ -1,5 +1,5 @@
 <template>
-  <xrextras-opaque-background remove="true">
+  <xrextras-opaque-background remove="true" position="0 0 0">
     <a-entity id="hider-walls">
       <a-box
         scale="100 1 100"

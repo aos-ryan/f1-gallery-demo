@@ -53,11 +53,11 @@
 
       <!-- Camera -->
       <a-camera id="camera" position="0 9 9" portal-camera>
-        <a-entity
+        <!-- <a-entity
           id="light-raycaster"
-          raycaster="objects: .bustMarker; far: 20"
+          raycaster="objects: .bustMarker; far: 60"
         >
-        </a-entity>
+        </a-entity> -->
         <!-- <a-entity
           id="objects-raycaster"
           cursor="fuse: false; rayOrigin: mouse;"
@@ -78,12 +78,22 @@
       <!-- Hider walls -->
       <HiderWalls />
       <!-- Portal Contents -->
-      <a-entity id="portal-contents">
-        <a-entity
+      <a-entity id="portal-contents" position="0 -2 0">
+        <!-- <a-entity
           id="room"
           gltf-model="/models/warehouse.glb"
           position="0 0.15 -3"
           rotation="0 90 0"
+          scale="5 5 5"
+          shadow="cast: false"
+        >
+        </a-entity> -->
+
+        <a-entity
+          id="room"
+          gltf-model="/models/garage_scene-v4.glb"
+          position="0 0.15 -55.5"
+          rotation="0 0 0"
           scale="5 5 5"
           shadow="cast: false"
         >
@@ -126,11 +136,18 @@
           gltf-model="/models/rc-13.glb"
           rotation="0 -90 0"
           scale="2 2 2"
-          position="0 0.2 -20"
+          position="7.6 2.2 -51.4"
           spotlight
           shadow="receive: false"
         >
         </a-entity>
+        <a-light
+          id="point-light"
+          type="point"
+          position="7.6 20 -53"
+          intensity="0.2"
+        >
+        </a-light>
       </a-entity>
 
       <!-- Portal -->
