@@ -40,15 +40,16 @@
       renderer="colorManagement: true;"
       tap-to-place-portal
       prompt-flow
-      points
       ui-controls
       stats
     >
+      <!-- points -->
       <!-- stats -->
       <!-- Assets -->
       <a-assets>
-        <img id="concrete" src="/textures/concrete_normal.jpg" />
-        <img id="clay" src="/textures/clay_sphere_tex.png" />
+        <img id="concrete" src="/textures/Concrete/Concrete_basecolor.jpg" />
+        <img id="concreteNormal" src="/textures/Concrete/Concrete_normal.jpg" />
+        <img id="concreteRough" src="/textures/Concrete/Concrete_rough.jpg" />
       </a-assets>
 
       <!-- Camera -->
@@ -79,73 +80,55 @@
       <HiderWalls />
       <!-- Portal Contents -->
       <a-entity id="portal-contents" position="0 -2 0">
-        <!-- <a-entity
-          id="room"
-          gltf-model="/models/warehouse.glb"
-          position="0 0.15 -3"
-          rotation="0 90 0"
-          scale="5 5 5"
-          shadow="cast: false"
-        >
-        </a-entity> -->
-
         <a-entity
           id="room"
-          gltf-model="/models/garage_scene-v4.glb"
-          position="0 0.15 -55.5"
-          rotation="0 0 0"
-          scale="5 5 5"
+          geometry="primitive: box"
+          material="color: #000000; roughness: 0; metalness: 0; side: double "
+          position="0 0.15 0"
+          rotation="0 90 0"
+          scale="250 250 250"
           shadow="cast: false"
         >
         </a-entity>
-        <!-- <a-entity
-          id="room"
-          geometry="primitive: box"
-          material="color: #222426; side: back"
-          scale="50 50 50"
-          position="-0.177 25 -25.22"
-        >
-        </a-entity> -->
-        <!-- <a-plane
+        <a-plane
           id="floor"
-          material="color: #4C4C4C; roughness: 0.5; metalness: 0.5 "
-          scale="100 100 100"
-          position="0 0.25 -50.25"
+          material="repeat: 20 20; src: #concrete; normalMap: #concreteNormal; roughnessMap: #concreteRough; roughness: 0.5; metalness: 0.5;"
+          scale="1 1 1"
+          width="150"
+          height="150"
+          position="0 2.2 -15"
           rotation="-90 0 0"
           shadow="receive: true"
         >
-        </a-plane> -->
-        <!-- Busts / Models in scene -->
-        <!-- <Models
-          v-for="model in modelData"
-          :key="model.id"
-          :id="model.id"
-          :src="model.src"
-          :info="model.info"
-          :rotation="model.rotation"
-          :scale="model.scale"
-          :zoomScale="model.zoomScale"
-          :position="model.position"
-          :pointsOfInterest="model.markers"
-          >
-        </Models> -->
+        </a-plane>
+        <a-plane
+          id="infiniteFloor"
+          material="color: #000000; roughness: 0; metalness: 0;"
+          scale="1000 1000 1000"
+          position="0 2.1 -15"
+          rotation="-90 0 0"
+        >
+        </a-plane>
 
         <a-entity
-          id="tyre"
+          id="car"
           class="bustMarker"
-          gltf-model="/models/rc-13.glb"
-          rotation="0 -90 0"
-          scale="2 2 2"
-          position="7.6 2.2 -51.4"
-          spotlight
+          gltf-model="/models/RB18-v1.glb"
+          rotation="0 0 0"
+          scale="5 5 5"
+          position="0 2.2 -15"
           shadow="receive: false"
         >
         </a-entity>
         <a-light
-          id="point-light"
-          type="point"
-          position="7.6 20 -53"
-          intensity="0.2"
+          id="spot-light"
+          type="spot"
+          target="#car"
+          light="castShadow: true"
+          position="19 21 -8"
+          intensity="1.5"
+          penumbra="0.9"
+          angle="30"
         >
         </a-light>
       </a-entity>

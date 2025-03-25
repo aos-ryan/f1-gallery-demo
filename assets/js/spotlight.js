@@ -17,7 +17,7 @@ const spotlight = {
     spotlight.setAttribute('angle', '30')
     spotlight.setAttribute('intensity', '1.0')
     spotlight.setAttribute('penumbra', '0.9')
-    spotlight.setAttribute('position', '7.6 18.8 -77.6')
+    spotlight.setAttribute('position', '0 28 -25')
     // spotlight.setAttribute(`animation__${this.model.id}lightup`, {
     //   property: 'intensity',
     //   to: '1',

@@ -10,11 +10,11 @@ const points = {
     this.raycaster = new THREE.Raycaster()
     this.points = [
       {
-        position: new THREE.Vector3(14, 5, -45),
+        position: new THREE.Vector3(4, 2, -11),
         element: document.querySelector('.point-0'),
       },
       {
-        position: new THREE.Vector3(4, 3, -45),
+        position: new THREE.Vector3(-10, 2, -9),
         element: document.querySelector('.point-1'),
       },
     ]
@@ -39,7 +39,7 @@ const points = {
       point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
 
       const intersects = this.raycaster.intersectObject(
-        document.getElementById('tyre').object3D,
+        document.getElementById('car').object3D,
         // this is the "bust" entity
         true
       )
