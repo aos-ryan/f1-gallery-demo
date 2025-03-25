@@ -96,7 +96,7 @@
           scale="1 1 1"
           width="150"
           height="150"
-          position="0 2.2 -15"
+          position="0 2.3 -15"
           rotation="-90 0 0"
           shadow="receive: true"
         >
@@ -116,7 +116,7 @@
           gltf-model="/models/RB18-v1.glb"
           rotation="0 0 0"
           scale="5 5 5"
-          position="0 2.2 -15"
+          position="2 2.2 -15"
           shadow="receive: false"
         >
         </a-entity>
@@ -125,7 +125,7 @@
           type="spot"
           target="#car"
           light="castShadow: true"
-          position="19 21 -8"
+          position="21.5 21 -8"
           intensity="1.5"
           penumbra="0.9"
           angle="30"
