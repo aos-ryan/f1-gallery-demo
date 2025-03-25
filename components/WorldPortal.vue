@@ -124,7 +124,7 @@
           id="spot-light"
           type="spot"
           target="#car"
-          light="castShadow: true"
+          light="castShadow: true; shadowMapHeight: 2048; shadowMapWidth: 2048;"
           position="21.5 21 -8"
           intensity="1.5"
           penumbra="0.9"
