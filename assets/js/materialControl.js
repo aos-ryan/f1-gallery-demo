@@ -20,6 +20,7 @@ const materialControl = {
     if (!this.model) return
     this.model.traverse((node) => {
       if (node.isMesh && node.material) {
+        console.log(node)
         if (Array.isArray(node.material)) {
           node.material.forEach((mat) => this.applyMaterialChanges(mat))
         } else {

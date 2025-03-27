@@ -195,6 +195,26 @@ export default {
     document.addEventListener('toggleInPortal', this.toggleInPortal)
     document.addEventListener('currentModelChanged', this.handleModelChange)
   },
+  mounted() {
+    document.addEventListener('click', (event) => {
+      const points = document.querySelectorAll('.point .text')
+
+      // Check if a .point element was clicked
+      let pointClicked = event.target.closest('.point')
+
+      if (pointClicked) {
+        // Show the clicked one
+        let textElement = pointClicked.querySelector('.text')
+        console.log(textElement)
+        if (textElement) {
+          textElement.classList.add('visible')
+        }
+      } else {
+        // Clicked outside, hide all .text elements
+        points.forEach((text) => text.classList.remove('visible'))
+      }
+    })
+  },
 }
 </script>
 
@@ -255,6 +275,9 @@ export default {
   transform: translate(-50%, 0);
 }
 /* Styles for points of interest */
+.points-container {
+  user-select: none;
+}
 .point {
   position: absolute;
   top: 50%;
@@ -301,7 +324,8 @@ export default {
   transition: opacity 0.3s;
   pointer-events: none;
 }
-.point:hover .text {
+
+.point .text.visible {
   opacity: 1;
 }
 
