@@ -44,7 +44,7 @@ export default {
   buildModules: [],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/dotenv'],
+  modules: ['@nuxtjs/dotenv', 'nuxt-gsap-module'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

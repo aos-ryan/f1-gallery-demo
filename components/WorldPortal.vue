@@ -11,14 +11,13 @@
     </div>
     <!-- Points -->
     <div class="points-container" v-show="inPortal">
-      <div class="point point-0">
+      <div class="point point-0" @click="togglePoiExpand">
         <div class="label">1</div>
         <div class="text">
-          Hard tyres provide the least grip, but are supposed to remain in
-          working order the longest.
+          Hard tyres provide the least grip but have longevity.
         </div>
       </div>
-      <div class="point point-1">
+      <div class="point point-1" @click="togglePoiExpand">
         <div class="label">2</div>
         <div class="text">18-inch low-profile wheels.</div>
       </div>
@@ -134,6 +133,8 @@
           angle="30"
         >
         </a-light>
+
+        <!-- <a-entity light="type: ambient; color: #CCC"></a-entity> -->
       </a-entity>
 
       <!-- Portal -->
@@ -164,6 +165,7 @@ export default {
     return {
       bgFade: false,
       inPortal: false,
+      isExpanded: false,
       currentModelId: '',
       modelData: [
         {
@@ -179,6 +181,42 @@ export default {
     }
   },
   methods: {
+    togglePoiExpand(event) {
+      const gsap = this.$gsap
+      const target = event.target.closest('.point')
+      const textElement = target.querySelector('.text')
+
+      if (!target) return
+
+      if (this.activeElement === target) return
+
+      if (this.activeTimeline) {
+        this.activeTimeline.reverse()
+      }
+
+      this.activeTimeline = gsap.timeline()
+      this.activeTimeline.to(target, {
+        width: '250px',
+        duration: 0.3,
+        ease: 'power1.inOut',
+      })
+      this.activeTimeline.to(textElement, {
+        opacity: 1,
+        duration: 0.2,
+        ease: 'power1.inOut',
+      })
+
+      this.activeElement = target
+
+      document.addEventListener('click', this.handleOutsideClick)
+    },
+    handleOutsideClick(event) {
+      if (this.activeElement && !this.activeElement.contains(event.target)) {
+        this.activeTimeline.reverse()
+        this.activeElement = null
+        document.removeEventListener('click', this.handleOutsideClick)
+      }
+    },
     doBgFade() {
       this.bgFade = !this.bgFade
     },
@@ -196,24 +234,24 @@ export default {
     document.addEventListener('currentModelChanged', this.handleModelChange)
   },
   mounted() {
-    document.addEventListener('click', (event) => {
-      const points = document.querySelectorAll('.point .text')
-
-      // Check if a .point element was clicked
-      let pointClicked = event.target.closest('.point')
-
-      if (pointClicked) {
-        // Show the clicked one
-        let textElement = pointClicked.querySelector('.text')
-        console.log(textElement)
-        if (textElement) {
-          textElement.classList.add('visible')
-        }
-      } else {
-        // Clicked outside, hide all .text elements
-        points.forEach((text) => text.classList.remove('visible'))
-      }
-    })
+    // document.addEventListener('click', (event) => {
+    //   const points = document.querySelectorAll('.point, .text')
+    //   // Check if a .point element was clicked
+    //   let pointClicked = event.target.closest('.point')
+    //   if (pointClicked) {
+    //     // Show the clicked one
+    //     let textElement = pointClicked.querySelector('.text')
+    //     if (textElement) {
+    //       textElement.classList.add('visible')
+    //     }
+    //     pointClicked.classList.add('expanded')
+    //   } else {
+    //     console.log(points)
+    //     // Clicked outside, hide all .text elements
+    //     points.forEach((point) => point.classList.remove('expanded'))
+    //     points.forEach((text) => text.classList.remove('visible'))
+    //   }
+    // })
   },
 }
 </script>
@@ -283,50 +321,76 @@ export default {
   top: 50%;
   left: 50%;
   z-index: 999;
+  opacity: 0;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 50px;
+  background: rgba(0, 0, 0, 0.7);
+  /* overflow: hidden; */
+  transition: width 0.3s ease-in-out;
+  width: 50px;
+  height: 50px;
+}
+
+.point.visible {
+  opacity: 1;
+}
+.point.expanded {
+  width: 250px;
 }
 .point .label {
   position: absolute;
-  top: -20px;
-  left: -20px;
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: red;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
   border-radius: 50%;
-  background: #00000077;
-  border: 1px solid #ffffff77;
-  color: #ffffff;
-  font-family: Helvetica, Arial, sans-serif;
-  text-align: center;
-  line-height: 40px;
-  font-weight: 100;
-  font-size: 14px;
-  cursor: help;
-  transform: scale(0, 0);
-  transition: transform 0.3s;
-}
-.point.visible .label {
-  transform: scale(1, 1);
+  font-family: 'KHInterference';
 }
 .point .text {
-  position: absolute;
-  top: 30px;
-  left: -120px;
-  width: 200px;
-  padding: 20px;
-  border-radius: 4px;
-  background: #00000077;
-  border: 1px solid #ffffff77;
-  color: #ffffff;
-  line-height: 1.3em;
-  font-family: Helvetica, Arial, sans-serif;
-  font-weight: 100;
-  font-size: 14px;
   opacity: 0;
-  transition: opacity 0.3s;
-  pointer-events: none;
+  overflow: hidden;
+  color: white;
+  font-size: 12px;
+  font-family: 'KHInterference';
+  padding-left: 60px;
+  padding-right: 10px;
+  transition: opacity 0.2s ease-in-out 0.3s;
 }
 
 .point .text.visible {
   opacity: 1;
+}
+
+/* Red corner brackets */
+.point::before,
+.point::after {
+  z-index: 999;
+  content: '';
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border: 2px solid red;
+}
+
+.point::before {
+  top: -10px;
+  left: -10px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.point::after {
+  bottom: -10px;
+  right: -10px;
+  border-left: none;
+  border-top: none;
 }
 
 /* Animations */
