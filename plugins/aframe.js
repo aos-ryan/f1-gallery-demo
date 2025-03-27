@@ -13,6 +13,8 @@ import { moveToMarker } from '~/assets/js/moveToMarker'
 import { spotlight } from '~/assets/js/spotlight'
 import fitComponent from '~/assets/js/fit'
 import { points } from '~/assets/js/points'
+import { materialControl } from '~/assets/js/materialControl'
+import { boundingBox } from '~/assets/js/getBB'
 
 AFRAME.registerComponent('portal-camera', portalCameraComponent)
 AFRAME.registerComponent('prompt-flow', promptFlowComponent)
@@ -28,3 +30,5 @@ AFRAME.registerComponent('model-click', modelClick)
 AFRAME.registerComponent('move-to-marker', moveToMarker)
 AFRAME.registerComponent('spotlight', spotlight)
 AFRAME.registerComponent('points', points)
+AFRAME.registerComponent('material-control', materialControl)
+AFRAME.registerComponent('bounding-box', boundingBox)

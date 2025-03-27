@@ -42,6 +42,7 @@
       prompt-flow
       ui-controls
       stats
+      points
     >
       <!-- points -->
       <!-- stats -->
@@ -118,13 +119,15 @@
           scale="5 5 5"
           position="2 2.2 -15"
           shadow="receive: false"
+          material-control
+          bounding-box
         >
         </a-entity>
         <a-light
           id="spot-light"
           type="spot"
           target="#car"
-          light="castShadow: true; shadowMapHeight: 2048; shadowMapWidth: 2048;"
+          light="castShadow: true; shadowMapHeight: 2048; shadowMapWidth: 2048a;"
           position="21.5 21 -8"
           intensity="1.5"
           penumbra="0.9"

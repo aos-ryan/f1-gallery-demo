@@ -5,12 +5,17 @@ const points = {
     this.sizes = { width: window.innerWidth, height: window.innerHeight }
     this.scene = document.getElementById('scene')
 
+    this.scene.addEventListener('loaded', () => {
+      this.setup()
+    })
+  },
+  setup() {
     this.cameraRig = document.getElementById('camera').object3D
     this.camera = document.getElementById('camera').getObject3D('camera')
     this.raycaster = new THREE.Raycaster()
     this.points = [
       {
-        position: new THREE.Vector3(4, 2, -11),
+        position: new THREE.Vector3(6, 2, -10),
         element: document.querySelector('.point-0'),
       },
       {
@@ -21,7 +26,7 @@ const points = {
     console.log()
   },
   tick() {
-    // console.log(this.camera.position)
+    if (!this.camera) return
     // use a raycaster to make sure each html point element is updated to reflect the position of its point in the scene
     for (const point of this.points) {
       // get the world position of the point
@@ -38,9 +43,11 @@ const points = {
       const translateY = -screenPosition.y * this.sizes.height * 0.5
       point.element.style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
 
+      const carEntity = document.getElementById('raycast-target')
+      if (!carEntity || !carEntity.object3D) return
+
       const intersects = this.raycaster.intersectObject(
-        document.getElementById('car').object3D,
-        // this is the "bust" entity
+        carEntity.object3D,
         true
       )
       // console.log(intersects)
